@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cheddars Prints</title>
+</head>
+<body style="font-family: Arial; max-width: 900px; margin: 40px auto; padding: 0 16px;">
+  <h1>Cheddars Prints</h1>
+  <p>Custom hoodies and t-shirts. Upload your image. I print using Direct Transfer Film (DTF).</p>
+
+  <label>Upload your image</label><br>
+  <input id="file" type="file" accept="image/png,image/jpeg"><br><br>
+  <img id="preview" style="max-width:260px; display:none; border:1px solid #ccc; padding:8px; border-radius:10px;">
+
+  <script>
+    const f = document.getElementById("file");
+    const p = document.getElementById("preview");
+    f.addEventListener("change", () => {
+      const file = f.files[0];
+      if (!file) return;
+      p.src = URL.createObjectURL(file);
+      p.style.display = "block";
+    });
+  </script>
+</body>
+</html>
