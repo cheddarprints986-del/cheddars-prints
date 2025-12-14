@@ -1,27 +1,524 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cheddars Prints</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cheddars Prints | Custom DTF Hoodies & T-Shirts</title>
+  <meta name="description" content="Upload your design. Custom hoodies and t-shirts printed with Direct Transfer Film (DTF). Made to order." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1b33;
+      --panel2:#0c162b;
+      --text:#eaf0ff;
+      --muted:#a9b6d3;
+      --border:rgba(255,255,255,.12);
+      --accent:#f7c948;
+      --accent2:#ff7a59;
+      --ok:#39d98a;
+      --shadow:0 18px 50px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 700px at 15% 10%, rgba(247,201,72,.20), transparent 60%),
+        radial-gradient(900px 700px at 90% 0%, rgba(255,122,89,.18), transparent 55%),
+        linear-gradient(180deg, #060b16 0%, var(--bg) 55%, #050812 100%);
+      min-height:100vh;
+    }
+    a{color:inherit}
+    .wrap{max-width:1140px;margin:0 auto;padding:24px 16px 70px}
+    /* Top bar */
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-bottom:22px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;
+    }
+    .logo{
+      width:42px;height:42px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--accent), var(--accent2) 65%, #1b2a4a 100%);
+      box-shadow:0 14px 34px rgba(247,201,72,.25);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;color:#071025;font-size:20px;
+    }
+    .brand h1{margin:0;font-size:16px;letter-spacing:.2px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid var(--border);
+      background:rgba(15,27,51,.7);
+      padding:8px 12px;border-radius:999px;
+      font-size:12px;color:var(--muted);
+      white-space:nowrap;
+    }
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--ok);box-shadow:0 0 14px rgba(57,217,138,.65)}
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .95fr;
+      gap:18px;
+    }
+    @media (max-width: 920px){
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(15,27,51,.92), rgba(11,18,32,.92));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card-inner{padding:18px}
+    /* Hero */
+    .hero{
+      padding:22px 20px 18px;
+      border-bottom:1px solid var(--border);
+      background:
+        radial-gradient(600px 280px at 10% 30%, rgba(247,201,72,.18), transparent 60%),
+        radial-gradient(550px 260px at 85% 10%, rgba(255,122,89,.14), transparent 55%);
+    }
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid rgba(247,201,72,.35);
+      background:rgba(247,201,72,.10);
+      color:var(--accent);
+      padding:6px 10px;border-radius:999px;
+      font-size:12px;font-weight:600;
+      margin-bottom:10px;
+    }
+    .hero h2{
+      margin:0 0 10px;
+      font-size: clamp(26px, 3.5vw, 38px);
+      line-height:1.06;
+      letter-spacing:-.4px;
+    }
+    .hero h2 span{
+      background: linear-gradient(120deg, var(--accent), var(--accent2));
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero p{margin:0 0 14px;color:var(--muted);font-size:14px;max-width:62ch}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    .stat{
+      border:1px solid var(--border);
+      background:rgba(12,22,43,.65);
+      border-radius:14px;
+      padding:10px 10px;
+    }
+    .stat .k{font-size:11px;color:var(--muted);margin-bottom:3px}
+    .stat .v{font-size:14px;font-weight:700}
+    .stat .s{font-size:11px;color:var(--muted);margin-top:2px}
+    /* Left content blocks */
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      padding:18px;
+    }
+    @media (max-width:560px){.two{grid-template-columns:1fr}}
+    .mini{
+      border:1px solid var(--border);
+      background:rgba(12,22,43,.55);
+      border-radius:14px;
+      padding:14px;
+    }
+    .mini h3{margin:0 0 6px;font-size:14px}
+    .mini p{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+    .mini ul{margin:10px 0 0 16px;color:var(--muted);font-size:12px}
+    .mini li{margin:6px 0}
+    /* Form */
+    .form-title{
+      font-size:16px;font-weight:800;margin:0 0 6px;
+    }
+    .form-sub{margin:0 0 14px;color:var(--muted);font-size:12px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:560px){.row{grid-template-columns:1fr}}
+    label{display:block;font-size:12px;color:var(--muted);margin:10px 0 6px}
+    input, select, textarea{
+      width:100%;
+      background:rgba(12,22,43,.75);
+      border:1px solid var(--border);
+      color:var(--text);
+      border-radius:12px;
+      padding:10px 11px;
+      outline:none;
+      font-size:13px;
+    }
+    textarea{min-height:90px;resize:vertical}
+    input:focus, select:focus, textarea:focus{
+      border-color:rgba(247,201,72,.7);
+      box-shadow:0 0 0 2px rgba(247,201,72,.12);
+    }
+    .upload{
+      border:1px dashed rgba(255,255,255,.25);
+      background:rgba(12,22,43,.55);
+      border-radius:14px;
+      padding:12px;
+      cursor:pointer;
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      transition:.12s transform ease;
+    }
+    .upload:hover{transform:translateY(-1px)}
+    .upload strong{color:var(--text)}
+    .preview{
+      display:none;
+      margin-top:10px;
+      gap:10px;
+      align-items:center;
+      border:1px solid var(--border);
+      background:rgba(12,22,43,.55);
+      border-radius:14px;
+      padding:10px;
+    }
+    .preview img{
+      width:78px;height:78px;
+      border-radius:12px;
+      background:#071025;
+      object-fit:contain;
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .meta{font-size:12px;color:var(--muted)}
+    .meta b{display:block;color:var(--text);margin-bottom:3px}
+    .badge{
+      display:inline-flex;align-items:center;gap:6px;
+      margin-top:6px;
+      font-size:11px;
+      padding:4px 8px;border-radius:999px;
+      border:1px solid rgba(57,217,138,.45);
+      color:#bff7d8;
+      background:rgba(57,217,138,.10);
+    }
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .btn{
+      border:none;cursor:pointer;
+      border-radius:999px;
+      padding:10px 16px;
+      font-weight:800;
+      font-size:13px;
+    }
+    .btn.primary{
+      background:linear-gradient(120deg,var(--accent),var(--accent2));
+      color:#071025;
+      box-shadow:0 16px 34px rgba(247,201,72,.22);
+    }
+    .btn.ghost{
+      background:rgba(12,22,43,.75);
+      color:var(--muted);
+      border:1px solid var(--border);
+    }
+    .summary{
+      margin-top:14px;
+      border-top:1px solid var(--border);
+      padding-top:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .summary strong{color:var(--text)}
+    /* FAQ */
+    .faq{
+      margin-top:16px;
+      padding:18px;
+      border-top:1px solid var(--border);
+      background:rgba(12,22,43,.30);
+    }
+    details{
+      border:1px solid var(--border);
+      background:rgba(12,22,43,.55);
+      border-radius:14px;
+      padding:10px 12px;
+      margin:10px 0;
+    }
+    summary{cursor:pointer;font-weight:700}
+    details p{margin:8px 0 0;color:var(--muted);font-size:12px}
+    /* Footer */
+    footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:11px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      opacity:.9;
+    }
+    .smalllink{color:var(--muted);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+  </style>
 </head>
-<body style="font-family: Arial; max-width: 900px; margin: 40px auto; padding: 0 16px;">
-  <h1>Cheddars Prints</h1>
-  <p>Custom hoodies and t-shirts. Upload your image. I print using Direct Transfer Film (DTF).</p>
 
-  <label>Upload your image</label><br>
-  <input id="file" type="file" accept="image/png,image/jpeg"><br><br>
-  <img id="preview" style="max-width:260px; display:none; border:1px solid #ccc; padding:8px; border-radius:10px;">
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">C</div>
+        <div>
+          <h1>Cheddars Prints</h1>
+          <p>Custom DTF Hoodies & T-Shirts</p>
+        </div>
+      </div>
+      <div class="pill"><span class="dot"></span> Made to order · Moreno Valley, CA</div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT -->
+      <section class="card">
+        <div class="hero">
+          <div class="tag">DTF Prints · Your design</div>
+          <h2>Make your own <span>custom hoodie or tee</span> in minutes.</h2>
+          <p>Upload your logo, photo, or artwork. I print with Direct Transfer Film (DTF) for bright colors and long-lasting wear.</p>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="k">Print type</div>
+              <div class="v">DTF transfer</div>
+              <div class="s">Full color · Soft feel</div>
+            </div>
+            <div class="stat">
+              <div class="k">No minimums</div>
+              <div class="v">1 item OK</div>
+              <div class="s">Bulk available</div>
+            </div>
+            <div class="stat">
+              <div class="k">Typical time</div>
+              <div class="v">5–7 days</div>
+              <div class="s">Rush by request</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="mini">
+            <h3>Best file tips</h3>
+            <p>For the best print quality use a clean high-resolution image.</p>
+            <ul>
+              <li>PNG is best for logos</li>
+              <li>Transparent background helps</li>
+              <li>Send the biggest size you have</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h3>What I can do</h3>
+            <p>If your file needs help I can adjust size and placement for print.</p>
+            <ul>
+              <li>Front or back prints</li>
+              <li>Small chest logos</li>
+              <li>Full front designs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq">
+          <h3 style="margin:0 0 8px; font-size:14px;">FAQ</h3>
+
+          <details>
+            <summary>Do you offer local pickup?</summary>
+            <p>Yes. I can do local pickup around Moreno Valley. Shipping is also available.</p>
+          </details>
+
+          <details>
+            <summary>Can I do front and back prints?</summary>
+            <p>Yes. Put it in the notes and I will confirm pricing with you.</p>
+          </details>
+
+          <details>
+            <summary>How do I wash the shirt or hoodie?</summary>
+            <p>Turn inside out. Cold wash. Low heat dry for best long-term results.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- RIGHT -->
+      <section class="card">
+        <div class="card-inner">
+          <div class="form-title">Start your custom order</div>
+          <p class="form-sub">Fill this out to send your request. This page does not take payment yet. I will confirm details and price with you.</p>
+
+          <div class="row">
+            <div>
+              <label for="product">Product</label>
+              <select id="product">
+                <option value="Hoodie">Hoodie</option>
+                <option value="T-Shirt">T-Shirt</option>
+              </select>
+            </div>
+            <div>
+              <label for="color">Color</label>
+              <select id="color">
+                <option>Black</option>
+                <option>White</option>
+                <option>Heather Gray</option>
+                <option>Navy</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="size">Size</label>
+              <select id="size">
+                <option>S</option><option selected>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option>
+              </select>
+            </div>
+            <div>
+              <label for="qty">Quantity</label>
+              <input id="qty" type="number" min="1" max="50" value="1" />
+            </div>
+          </div>
+
+          <label>Upload your artwork (PNG / JPG)</label>
+          <div class="upload" id="uploadBox">
+            <strong>Click to upload</strong><br/>
+            Transparent PNG recommended for logos
+          </div>
+          <input id="file" type="file" accept="image/png,image/jpeg" style="display:none" />
+
+          <div class="preview" id="previewWrap">
+            <img id="previewImg" alt="Preview"/>
+            <div class="meta">
+              <b id="fileName">Your file</b>
+              <div id="fileSize"></div>
+              <div class="badge">DTF ready · I’ll size it for print</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="name">Your name</label>
+              <input id="name" type="text" placeholder="Your name" />
+            </div>
+            <div>
+              <label for="email">Your email</label>
+              <input id="email" type="email" placeholder="you@email.com" />
+            </div>
+          </div>
+
+          <label for="notes">Notes</label>
+          <textarea id="notes" placeholder="Front or back print. Deadline. Any special request."></textarea>
+
+          <div class="btns">
+            <button class="btn primary" id="submit" type="button">Submit request</button>
+            <button class="btn ghost" id="reset" type="button">Reset</button>
+          </div>
+
+          <div class="summary">
+            <div>
+              <strong>Order summary</strong><br/>
+              <span id="summaryText">1 × Hoodie · Black · M</span>
+            </div>
+            <div style="text-align:right">
+              <strong id="estPrice">$35–$55</strong><br/>
+              <span style="font-size:11px;">estimate only</span>
+            </div>
+          </div>
+
+          <p style="margin:12px 0 0; color:var(--muted); font-size:11px;">
+            Tip: If you want payments on the site, we can add Stripe next.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div>© <span id="year"></span> Cheddars Prints</div>
+      <div>
+        <a class="smalllink" href="#" onclick="alert('Next step: add your phone number + Instagram link here.');return false;">Add contact links</a>
+      </div>
+    </footer>
+  </div>
 
   <script>
-    const f = document.getElementById("file");
-    const p = document.getElementById("preview");
-    f.addEventListener("change", () => {
-      const file = f.files[0];
-      if (!file) return;
-      p.src = URL.createObjectURL(file);
-      p.style.display = "block";
+    const yearEl = document.getElementById("year");
+    yearEl.textContent = new Date().getFullYear();
+
+    const productEl = document.getElementById("product");
+    const colorEl = document.getElementById("color");
+    const sizeEl = document.getElementById("size");
+    const qtyEl = document.getElementById("qty");
+    const summaryTextEl = document.getElementById("summaryText");
+    const estPriceEl = document.getElementById("estPrice");
+
+    const uploadBox = document.getElementById("uploadBox");
+    const fileEl = document.getElementById("file");
+    const previewWrap = document.getElementById("previewWrap");
+    const previewImg = document.getElementById("previewImg");
+    const fileNameEl = document.getElementById("fileName");
+    const fileSizeEl = document.getElementById("fileSize");
+
+    const submitBtn = document.getElementById("submit");
+    const resetBtn = document.getElementById("reset");
+
+    function estimatePrice(product, qty){
+      // simple estimate buckets
+      let min = product === "Hoodie" ? 35 : 25;
+      let max = product === "Hoodie" ? 55 : 40;
+
+      if(qty >= 5 && qty < 10){ min -= 1; max -= 2; }
+      if(qty >= 10){ min -= 2; max -= 4; }
+
+      if(min < 15) min = 15;
+      if(max < min + 5) max = min + 5;
+      return `$${min}–$${max}`;
+    }
+
+    function updateSummary(){
+      const p = productEl.value;
+      const c = colorEl.value;
+      const s = sizeEl.value;
+      const q = parseInt(qtyEl.value || "1", 10);
+      summaryTextEl.textContent = `${q} × ${p} · ${c} · ${s}`;
+      estPriceEl.textContent = estimatePrice(p, q);
+    }
+
+    productEl.addEventListener("change", updateSummary);
+    colorEl.addEventListener("change", updateSummary);
+    sizeEl.addEventListener("change", updateSummary);
+    qtyEl.addEventListener("input", updateSummary);
+
+    uploadBox.addEventListener("click", () => fileEl.click());
+
+    fileEl.addEventListener("change", () => {
+      const f = fileEl.files[0];
+      if(!f) return;
+      fileNameEl.textContent = f.name;
+      fileSizeEl.textContent = `${(f.size / 1024).toFixed(1)} KB`;
+      previewImg.src = URL.createObjectURL(f);
+      previewWrap.style.display = "flex";
     });
+
+    submitBtn.addEventListener("click", () => {
+      // This does not email you yet. It just confirms the form works.
+      alert("Request saved. Next step is connecting this form to email or payments.");
+    });
+
+    resetBtn.addEventListener("click", () => {
+      fileEl.value = "";
+      previewWrap.style.display = "none";
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("notes").value = "";
+      qtyEl.value = 1;
+      sizeEl.value = "M";
+      colorEl.selectedIndex = 0;
+      productEl.selectedIndex = 0;
+      updateSummary();
+    });
+
+    updateSummary();
   </script>
 </body>
 </html>
